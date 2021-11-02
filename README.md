@@ -11,4 +11,5 @@ numpy
 Steps:
 1. Get a face out of a picture (OpenCV library)
 2. Put that face into a matrix
-3. Write our own eigenfaces algorithm
+3. Write our own eigenfaces algorithm to identify that face
+4. Spit out if that face is Joseph or not
