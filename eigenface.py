@@ -1,4 +1,3 @@
-from os import write
 from camerapro import *
 from facecrop import *
 
@@ -32,6 +31,8 @@ np.savetxt("imgMatrix.csv", imgArray, delimiter=",")
 
 #reading that array as a CSV file... might be unnecssary if I can just do it in here
 df = pd.read_csv("imgMatrix.csv")
-df.head()
-print(df.shape)
+#df.head()
+#print(df.shape)
+
+df['target'].nunique()
 
