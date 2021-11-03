@@ -1,6 +1,9 @@
 # calling camera function
 # calling face/noface function -- if noface, return to camera
 # calling identify function
+
+from facecrop import *
+from camerapro import *
 class statefacerec:
 
     
