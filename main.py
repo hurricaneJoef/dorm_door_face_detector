@@ -2,11 +2,6 @@
 # calling face/noface function -- if noface, return to camera
 # calling identify function
 
-camera()
-
-face = isface()
-
-
 def stateloop(self):
     print("state: " + str(self.state))
     
@@ -16,6 +11,7 @@ def stateloop(self):
     #camera 
     if self.state == 0:
         #take a picture!
+        self.state = 1
     
     #isface?
     elif self.state == 1:
