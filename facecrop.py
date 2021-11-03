@@ -7,15 +7,20 @@ def crop2face(gimg):
     face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_alt2.xml')
     
     # Detect faces
+    #print(gimg)
+
+    cv2.imshow("cam-test",gimg)
+
     faces = face_cascade.detectMultiScale(gimg, 1.1, 4)
     
     # Draw rectangle around the faces and crop the faces
     for (x, y, w, h) in faces:
-        cv2.rectangle(img, (x, y), (x+w, y+h), (0, 0, 255), 2)
-        faces = img[y:y + h, x:x + w]
-        cv2.imshow("face",faces)
+        cv2.rectangle(gimg, (x, y), (x+w, y+h), (255), 2)
+        faceimg = gimg[y:y + h, x:x + w]
+        return faceimg
         
     # Display the output
     
-    cv2.imshow('img', img)
-    cv2.waitKey()
+    #cv2.imshow('gimg', gimg)
+    #cv2.waitKey()
+    #return gimg
