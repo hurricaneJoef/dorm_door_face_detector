@@ -2,12 +2,15 @@
 
 Dependencies:
 openCV
+    doc: https://docs.opencv.org/4.5.4/
 numpy
+    install: https://numpy.org/install/
 Matplotlib
+    installation: https://matplotlib.org/stable/users/installing.html
 Pandas (wrapper library to make it easier to call stuff from numpy and matplotlib)
     doc: https://mode.com/python-tutorial/libraries/pandas/
 Scikitlearn
-    doc: https://scikit-learn.org/stable/install.html
+    installation: https://scikit-learn.org/stable/install.html
 
 
 
