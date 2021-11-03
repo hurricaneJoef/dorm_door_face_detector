@@ -19,14 +19,18 @@ warnings.filterwarnings('ignore')
 #to be deleted once we can pass an image in through another function
 img = camcapture()
  
+#writing the image to a file
 cv2.imwrite("face.png", img)
 
+
+#copied from Pillow -- changing an image to an array
 imgsubstep = Image.open("face.png")
 imgSequence = imgsubstep.getdata()
 imgArray = np.array(img)
 np.savetxt("imgMatrix.csv", imgArray, delimiter=",")
 
 
+#reading that array as a CSV file... might be unnecssary if I can just do it in here
 df = pd.read_csv("imgMatrix.csv")
 df.head()
 print(df.shape)

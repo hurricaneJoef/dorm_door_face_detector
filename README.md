@@ -2,26 +2,22 @@
 
 Dependencies:
 openCV
-    doc: https://docs.opencv.org/4.5.4/
+    docs: https://docs.opencv.org/4.5.4/
 numpy
     install: https://numpy.org/install/
 Matplotlib
     installation: https://matplotlib.org/stable/users/installing.html
 Pandas (wrapper library to make it easier to call stuff from numpy and matplotlib)
-    doc: https://mode.com/python-tutorial/libraries/pandas/
+    docs: https://mode.com/python-tutorial/libraries/pandas/
 Scikitlearn
     installation: https://scikit-learn.org/stable/install.html
-
+Pillow
+    docs: https://pillow.readthedocs.io/en/stable/
 
 
 Summary:
 MVP
 - Detect a single person consistently out of a group of multiple people with a 90% success rate
-
--Python-
-numpy
-
-
 for help:
 
 https://towardsdatascience.com/eigenfaces-face-classification-in-python-7b8d2af3d3ea
