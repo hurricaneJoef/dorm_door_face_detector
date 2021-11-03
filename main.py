@@ -5,10 +5,6 @@
 from facecrop import *
 from camerapro import *
 class statefacerec:
-
-    
-
-
     def stateloop(self):
         print("state: " + str(self.state))   
     

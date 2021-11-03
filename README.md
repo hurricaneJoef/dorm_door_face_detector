@@ -1,5 +1,15 @@
 # dorm_door_face_detector
 
+Dependencies:
+openCV
+numpy
+Matplotlib
+Pandas (wrapper library to make it easier to call stuff from numpy and matplotlib)
+    doc: https://mode.com/python-tutorial/libraries/pandas/
+Scikitlearn
+    doc: https://scikit-learn.org/stable/install.html
+
+
 
 Summary:
 MVP
