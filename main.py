@@ -37,15 +37,18 @@ class statefacerec:
         elif self.state == 2:
             #if it is joseph
             if isme:
-                print("hello, joseph")
+                self.state = 3
             #if it is not joseph
             else:
                 print ("hi! I don't know you")
+                self.state = 0
         
     
         elif self.state == 3:
+            print("hi, joseph")
         
         else:
             print("how the fuck did you get here?")
+            
 if __name__ == "__main__":
     stateloop()
