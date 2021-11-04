@@ -16,15 +16,15 @@ except FileNotFoundError:
     facestrained = 0
 
 try:
-    os.mkdir('/trainingdata/img/cropped')
+    os.mkdir('trainingdata')
+    os.mkdir('trainingdata/cropped')
 except Exception:
     pass
 
 faces = crop2face(img)
-if faces != None:
-    cv2.namedWindow("face-test")
-    cv2.imshow("face-test",faces)
-    cv2.imwrite(os.path.join('trainingdata','img','cropped'+str(facestrained)+'.png'),faces)
+cv2.namedWindow("face-test")
+cv2.imshow("face-test",faces)
+cv2.imwrite(os.path.join('trainingdata','cropped','img'+str(facestrained)+'.png'),faces)
 
 cv2.imwrite(os.path.join('trainingdata','img'+str(facestrained)+'.png'),img)
 
