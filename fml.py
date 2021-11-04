@@ -1,27 +1,21 @@
-import cv2
-import numpy as np
 
-# Read the input image
-cam = cv2.VideoCapture(0)   # 0 -> index of camera
+import numpy as np
+import cv2 as cv
+face_cascade = cv.CascadeClassifier(cv.data.haarcascades + 'haarcascade_frontalface_default.xml')
+eye_cascade = cv.CascadeClassifier(cv.data.haarcascades + 'haarcascade_eye.xml')
+cam = cv.VideoCapture(0)   # 0 -> index of camera
 s, img = cam.read()
-  
-# Convert into grayscale
-gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-  
-# Load the cascade
-face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_alt2.xml')
-  
+gray = cv.cvtColor(img, cv.COLOR_BGR2GRAY)
 # Detect faces
-faces = face_cascade.detectMultiScale(gray, 1.1, 4)
-  
-# Draw rectangle around the faces and crop the faces
-for (x, y, w, h) in faces:
-    cv2.rectangle(img, (x, y), (x+w, y+h), (0, 0, 255), 2)
-    faces = img[y:y + h, x:x + w]
-    cv2.imshow("face",faces)
-    cv2.imwrite('face.jpg', faces)
-      
-# Display the output
-cv2.imwrite('detcted.jpg', img)
-cv2.imshow('img', img)
-cv2.waitKey()
+faces = face_cascade.detectMultiScale(gray, 1.3, 5)
+for (x,y,w,h) in faces:
+    cv.rectangle(img,(x,y),(x+w,y+h),(255,0,0),2)
+    roi_gray = gray[y:y+h, x:x+w]
+    roi_color = img[y:y+h, x:x+w]
+    eyes = eye_cascade.detectMultiScale(roi_gray)
+    for (ex,ey,ew,eh) in eyes:
+        cv.rectangle(roi_color,(ex,ey),(ex+ew,ey+eh),(0,255,0),2)
+cv.imshow('img',img)
+cv.waitKey(0)
+cv.destroyAllWindows()
+ 
