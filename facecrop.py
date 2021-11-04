@@ -17,7 +17,8 @@ def crop2face(gimg):
     for (x, y, w, h) in faces:
         cv2.rectangle(gimg, (x, y), (x+w, y+h), (255), 2)
         faceimg = gimg[y:y + h, x:x + w]
-        return faceimg
+        dim = (128,128)
+        return cv2.resize(faceimg, dim, interpolation = cv2.INTER_AREA)#resize
         
     # Display the output
     
