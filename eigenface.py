@@ -20,11 +20,29 @@ img = camcapture()
  
 def isme(img):
     
-   
-    with open('eigenface.npy', 'wb') as f:
-        vectors = np.load(f)#subject id
+    dim = (64,64)
+    with open('eigenvectorsbest.npy','rb') as f:
+        eigenvectors = np.load(f)
     
-    w, v = LA.eig() #make eig weigts and vectors
+    for filename in os.listdir('correctfaces'):
+        mytimg = cv2.imread(os.path.join('correctfaces', filename))
+        
+        meis = cv2.resize(mytimg, dim, interpolation = cv2.INTER_AREA)#resize
+        try:
+            correcteigs = np.append(correcteigs,np.ubyte(meis.reshape((meis.size,1))),1)
+        except Exception:
+            correcteigs = np.ubyte(meis.reshape((meis.size,1)))
+
+    cvec = np.true_divide(correcteigs,eigenvectors)
+    print(cvec.shape)
+
+    timg = cv2.resize(img, dim, interpolation = cv2.INTER_AREA)#resize
+    tarray = np.ubyte(timg.reshape((timg.size,1)))
+    tvec = np.true_divide(timg,eigenvectors)
+    print(tvec.shape)
+
+    for column in correcteigs.T:
+        tarray.square + column.square
     
     
     
