@@ -28,5 +28,15 @@ def eigtrain(eigennumber):
     besteignum = (-1-eigentrainimgs)
     with open('eigenvectorsbest.npy','wb') as f:
         np.save(f,v[:,-41:-1])
+'''
+to load these eigen vectors
+
+with open('eigenvectorsbest.npy','rb') as f:
+        eigenvectors = np.load(f)
+
+thats all you need
+
+'''
+
 if __name__ == "__main__":
     eigtrain(40)
