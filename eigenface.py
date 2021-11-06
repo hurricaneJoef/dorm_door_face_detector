@@ -2,21 +2,15 @@ from camerapro import *
 from facecrop import *
 
 import numpy as np 
-import pandas as pd 
-import matplotlib.pyplot as pltfrom 
 
-from numpy import linalg as LA
-from sklearn.svm import SVC
-from sklearn.model_selection import train_test_split
-from sklearn.decomposition import PCA
-from sklearn.metrics import confusion_matrix, classification_report
+from numpy import linalg as LA, true_divide
+import os
 
-from PIL import Image
 import warnings
 warnings.filterwarnings('ignore')
 
 #to be deleted once we can pass an image in through another function
-img = camcapture()   
+ 
  
 def isme(img):
     
@@ -27,24 +21,44 @@ def isme(img):
     for filename in os.listdir('correctfaces'):
         mytimg = cv2.imread(os.path.join('correctfaces', filename))
         
-        meis = cv2.resize(mytimg, dim, interpolation = cv2.INTER_AREA)#resize
+        meis = cv2.cvtColor(cv2.resize(mytimg, dim, interpolation = cv2.INTER_AREA), cv2.COLOR_BGR2GRAY)#resize
+        print(meis.shape)
         try:
             correcteigs = np.append(correcteigs,np.ubyte(meis.reshape((meis.size,1))),1)
         except Exception:
             correcteigs = np.ubyte(meis.reshape((meis.size,1)))
 
-    cvec = np.true_divide(correcteigs,eigenvectors)
+    cvec = np.linalg.lstsq(correcteigs,eigenvectors)[0].T
     print(cvec.shape)
 
-    timg = cv2.resize(img, dim, interpolation = cv2.INTER_AREA)#resize
+    bruhimg = cv2.resize(img, dim, interpolation = cv2.INTER_AREA)#resize
+    timg  = bruhimg.reshape((bruhimg.size,1))
     tarray = np.ubyte(timg.reshape((timg.size,1)))
-    tvec = np.true_divide(timg,eigenvectors)
+    tvec = np.linalg.lstsq(timg,eigenvectors)[0].T
     print(tvec.shape)
 
-    for column in correcteigs.T:
-        tarray.square + column.square
+    for column in cvec.T:
+        distsq = np.sum(np.square(tvec-column))
+        print(distsq)
+        if distsq < 0.00000000155:
+            return True
+    return False
+            
     
     
     
     
-
+if __name__ == "__main__":
+    face = None
+    while face is None:
+        img = camcapture()
+        face = crop2face(img)
+        None#'''r
+    face = cv2.cvtColor( cv2.imread("trainingdata/cropped/img3.png") , cv2.COLOR_BGR2GRAY)
+    cv2.namedWindow("isme-test")
+    cv2.imshow("isme-test",face)
+    cv2.waitKey(0)
+    cv2.destroyWindow("isme-test") 
+    output = isme(face)
+    print("output")
+    print(output) 

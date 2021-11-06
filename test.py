@@ -1,7 +1,7 @@
 from camerapro import *
 from facecrop import * 
 import numpy as np
-import cv2 as cv
+import cv2 as cv2
 import os.path
 
 

@@ -10,11 +10,11 @@ from numpy.core.fromnumeric import size
 '''
 def eigtrain(eigennumber):
     eigentrainimgs = [[]]
-
+    dim = (64,64)
     for filename in os.listdir('trainingdata/cropped'):
         cimg = cv2.imread(os.path.join('trainingdata/cropped', filename))
-        dim = (64,64)
-        img = cv2.resize(cimg, dim, interpolation = cv2.INTER_AREA)#resize
+        img = cv2.cvtColor(cv2.resize(cimg, dim, interpolation = cv2.INTER_AREA), cv2.COLOR_BGR2GRAY)#resize
+        print(img.shape)
         try:
             eigentrainimgs = np.append(eigentrainimgs,np.ubyte(img.reshape((img.size,1))),1)
         except Exception:
