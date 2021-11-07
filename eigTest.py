@@ -19,15 +19,22 @@ def eigtrain(eigennumber):
             eigentrainimgs = np.append(eigentrainimgs,np.ubyte(img.reshape((img.size,1))),1)
         except Exception:
             eigentrainimgs = np.ubyte(img.reshape((img.size,1)))
-
-    a = np.matmul(eigentrainimgs,eigentrainimgs.T)
+    eigmean = np.mean(eigentrainimgs,axis=1)
+    eigenmean = eigmean.reshape((eigmean.size,1))
+    eigenmeancentered = eigentrainimgs - eigenmean
+    print("eigen yeet")
+    print(np.mean(eigenmeancentered))
+    eigN = np.shape(eigenmeancentered)[0]
+    a = np.matmul(eigenmeancentered,eigenmeancentered.T)/np.sqrt(eigN-1)
     print(a.shape)
     w, v = LA.eigh(a) #make eig weigts and vectors
     print('v shape')
     print(v.shape)
-    besteignum = (-1-eigentrainimgs)
+    besteignum = (-1-eigenmeancentered)
     with open('eigenvectorsbest.npy','wb') as f:
-        np.save(f,v[:,-41:-1])
+        np.save(f,v[-41:-1,:])
+    with open('eigenmean.npy','wb') as f:
+        np.save(f,eigenmean)
 '''
 to load these eigen vectors
 
