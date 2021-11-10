@@ -46,7 +46,7 @@ def isme(img):
         #print("lillian was here")
         #print(column.T.shape)
         print(distsq)
-        if np.min(distsq) < 40000:
+        if np.min(distsq) < 90000:
             '''cimg = np.multiply(column,eigenvectors.T).resize((64,64))
             cv2.namedWindow("cvec-test")
             cv2.imshow("cvec-test",cimg)
@@ -73,18 +73,21 @@ if __name__ == "__main__":
     
     cv2.namedWindow("isme-test")
     cv2.imshow("isme-test",face)
-    cv2.waitKey(0)
-    cv2.destroyWindow("isme-test") 
+    
     output = isme(face)
     print("output")
     print(output)
+   
+    cv2.waitKey(0)
+    cv2.destroyWindow("isme-test") 
     for filename in os.listdir('trainingdata/cropped'):
         face = cv2.cvtColor( cv2.imread("trainingdata/cropped/"+filename) , cv2.COLOR_BGR2GRAY)
         print(filename)
         cv2.namedWindow("isme-test")
         cv2.imshow("isme-test",face)
-        cv2.waitKey(0)
-        cv2.destroyWindow("isme-test") 
+        
         output = isme(face)
         print("output")
         print(output)
+        cv2.waitKey(0)
+        cv2.destroyWindow("isme-test")  
